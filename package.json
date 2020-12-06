@@ -1,0 +1,28 @@
+{
+  "name": "socket.io-chat",
+  "version": "1.0.0",
+  "description": "Just a live time chat and it is open-source",
+  "main": "./bin/www",
+  "scripts": {
+    "test": "node ./bin/www"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CutieCat6778/socket.io-chat.git"
+  },
+  "keywords": [
+    "socket.io",
+    "chat",
+    "bruh"
+  ],
+  "author": "CutieCat#6778",
+  "license": "SEE LICENSE IN ./LICENSE",
+  "bugs": {
+    "url": "https://github.com/CutieCat6778/socket.io-chat/issues"
+  },
+  "homepage": "https://github.com/CutieCat6778/socket.io-chat#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^3.0.3"
+  }
+}
