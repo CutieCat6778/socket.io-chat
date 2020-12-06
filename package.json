@@ -2,9 +2,9 @@
   "name": "socket.io-chat",
   "version": "1.0.0",
   "description": "Just a live time chat and it is open-source",
-  "main": "./bin/www",
+  "main": "app.js",
   "scripts": {
-    "test": "node ./bin/www"
+    "test": "node app.js"
   },
   "repository": {
     "type": "git",
