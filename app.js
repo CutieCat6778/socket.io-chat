@@ -7,6 +7,7 @@ const indexRouter = require('./routes/root');
 const createError = require('http-errors');
 require('dotenv').config();
 
+const {generateMessage} = require('./utils/message');
 const port = process.env.port || 3000;
 const app = new express();
 
@@ -21,26 +22,26 @@ const io = socket_io(server);
 
 io.on('connection', (socket) => {
 	console.log(`New user just connected`);
-	
-	socket.emit('newMessage', {
-		from: "Admin",
-		content: 'Wellcome to the chat',
-		time: new Date()
-	});
 
-	socket.broadcast.emit('newMessage', {
-		from: "Admin",
-		content: 'New user just joined the chat!',
-		time: new Date()
-	});
+	socket.emit('newMessage', new generateMessage({
+		"author": "System",
+		"time": new Date(),
+		"content": "Welcome to the chat!"
+	}));
+
+	socket.broadcast.emit('newMessage', new generateMessage({
+		"author": "System",
+		"time": new Date(),
+		"content": "A new user just joined the chat!"
+	}));
 
 	socket.on('createMessage', (message) => {
 		console.log(message);
-		io.emit('newMessage', {
-			author: message.author,
-			content: message.content,
-			time: message.time
-		})
+		io.emit('newMessage', new generateMessage({
+			"author": message.author,
+			"time": message.time,
+			"content": message.content
+		}))
 	})
 
 	socket.on('disconnect', () => {
