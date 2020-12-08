@@ -1,3 +1,4 @@
+require('dotenv').config();
 const path = require('path');
 const http = require('http');
 const express = require('express');
@@ -5,17 +6,33 @@ const socket_io = require('socket.io');
 const logger = require('morgan');
 const indexRouter = require('./routes/root');
 const createError = require('http-errors');
-require('dotenv').config();
+const session = require('express-session');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 
-const {generateMessage} = require('./utils/message');
+const { generateMessage } = require('./utils/message');
 const port = process.env.port || 3000;
 const app = new express();
 
+mongoose.connect("mongodb+srv://Developers:23072006@discordbot-trademark.p1wmj.mongodb.net/chatapp?retryWrites=true&w=majority", {
+	useNewUrlParser: true,
+	useUnifiedTopology: true
+}, () => {
+	console.log("Mongo connected!")
+})
+app.use(session({
+	secret: 'secret',
+	resave: true,
+	saveUninitialized: true
+}));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use('/', indexRouter);
+
 
 const server = http.createServer(app);
 const io = socket_io(server);

@@ -1,9 +1,10 @@
-body{
+body {
     font-size: 20px;
     font-family: Arial, Helvetica, sans-serif;
     background-color: #000000;
     color: white;
     margin: 0 0;
+    text-align: left;
 }
 
 ul, li {
@@ -25,7 +26,7 @@ form input {
     padding: 5px 5px;
     background-color: #23272A;
     color: white;
-    border-radius:7px;
+    border-radius: 7px;
     font-size: 20px;
     font-weight: 600;
 }
@@ -34,9 +35,9 @@ form button {
     border: none;
     width: 10%;
     padding: 5px 5px;
-    background-color:#23272A;
+    background-color: #23272A;
     color: white;
-    border-radius:7px;
+    border-radius: 7px;
     font-size: 20px;
     font-weight: 600;
 }
@@ -45,11 +46,39 @@ header p {
     font-size: 30px;
     font-weight: 600;
     position: fixed;
-    top:0;
+    top: 0;
 }
 
-ul{
+ul {
     margin-top: 100px;
     margin-left: 500px;
     display: block;
+}
+
+.message {
+    text-align:left;
+}
+
+.message__title{
+    display: inline;
+}
+
+.message__title .username {
+    font-size: 23px;
+    font-weight: 600;
+}
+
+.message__title .time {
+    font-size: 19px;
+    margin-left: 10px;
+    font-weight: 100;
+    color: #999
+}
+
+.message__body {
+    margin-top: -5px;
+}
+
+.message__body p {
+    margin-left: 30px;
 }
