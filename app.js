@@ -11,7 +11,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
 const { generateMessage } = require('./utils/message');
-const port = process.env.port || 3000;
+const port = process.env.PORT || 3000;
 const app = new express();
 
 mongoose.connect("mongodb+srv://Developers:23072006@discordbot-trademark.p1wmj.mongodb.net/chatapp?retryWrites=true&w=majority", {
