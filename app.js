@@ -3,7 +3,6 @@ const path = require('path');
 const http = require('http');
 const express = require('express');
 const socket_io = require('socket.io');
-const logger = require('morgan');
 const indexRouter = require('./routes/root');
 const createError = require('http-errors');
 const session = require('express-session');
@@ -30,7 +29,6 @@ app.use(bodyParser.json());
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
-app.use(logger('dev'));
 app.use('/', indexRouter);
 
 
