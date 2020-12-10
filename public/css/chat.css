@@ -82,3 +82,7 @@ ul {
 .message__body p {
     margin-left: 30px;
 }
+
+#chat{
+    margin-bottom: 100px;
+}

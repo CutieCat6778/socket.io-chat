@@ -3,7 +3,7 @@ const socket = io();
 
 function scrollToView() {
     let messages = document.querySelector('#chat').lastElementChild;
-    messages.scrollIntoView();
+    messages.lastElementChild.scrollIntoView();
 }
 
 socket.on('connect', () => {
