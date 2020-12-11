@@ -9,7 +9,8 @@ router.get('/register', (req, res, next) => {
 })
 router.get('/chat', (req, res, next) => {
     if(req.session.logedin){
-        return res.render('chat', {name: req.session.name});
+        console.log(req.session.name)
+        return res.render('chat', {user: req.session.name});
     }else return res.redirect('/');
 })
 router.post('/', async(req, res, next) => {
@@ -32,7 +33,7 @@ router.post('/register', async(req, res, next) => {
             req.session.name = user.username;
             req.session.logedin = true;
             res.redirect('/chat');
-        }else return res.send("This username has been exist or something went wrong! Please try again with new username!");
+        }else if(!user) return res.send("This username has been exist or something went wrong! Please try again with new username!");
     }
 })
 module.exports = router;

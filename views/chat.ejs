@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Socket.io chat</title>
-    <link rel="stylesheet" href="/css/chat.css"/>
+    <link rel="stylesheet" href="/css/chat.css" />
 </head>
+
 <body>
     <header>
         <p>Please be nice in this chat or nothing</p>
@@ -31,8 +33,62 @@
         </li>
     </script>
     <script src="/socket.io/socket.io.js"></script>
-    <script src="/js/socket-io.js"></script>
+    <script>
+        const socket = io();
+
+        function login() {
+            alert("First you need login!");
+            const username = promt("Please supply your username, if you don't have any account on this Chatapp. Please type \"register\" and it will redirect you to registration page.");
+            if (username.toString().toLowerCase() == "{register}") {
+                register();
+            }
+            const password = prompt("Please supply your password. Your password will be saved as Hased version, so nobody can see your password! Even the developer.");
+            fetch("http://localhost:3000")
+        }
+
+        function scrollToView() {
+            let messages = document.querySelector('#chat').lastElementChild;
+            messages.lastElementChild.scrollIntoView();
+        }
+
+        socket.on('connect', () => {
+            console.log('Connected to server!');
+        })
+
+        socket.on('disconnect', () => {
+            console.log('Disconnected to server!');
+        })
+
+        socket.on('newMessage', (message) => {
+            const time = new Date(message.time);
+            const formatedTime = moment(time.getTime()).format("LT")
+            const template = document.querySelector('#message-template').innerHTML;
+            const html = Mustache.render(template, {
+                "author": message.author,
+                "content": message.content,
+                "time": formatedTime
+            });
+
+            const div = document.createElement('div');
+            div.innerHTML = html;
+
+            document.querySelector('#chat').appendChild(div);
+            scrollToView()
+        })
+
+        document.querySelector('#main-form-button').addEventListener("click", (e) => {
+            e.preventDefault();
+
+            socket.emit("createMessage", {
+                author: "<%= user%>",
+                content: document.querySelector('input[name=message]').value,
+                time: new Date()
+            })
+            document.querySelector('input[name=message]').value = ""
+        })
+    </script>
     <script src="/js/lib/moment.js"></script>
     <script src="/js/lib/mustache.js"></script>
 </body>
+
 </html>
