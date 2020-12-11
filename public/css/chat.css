@@ -41,14 +41,6 @@ form button {
     font-size: 20px;
     font-weight: 600;
 }
-
-header p {
-    font-size: 30px;
-    font-weight: 600;
-    position: fixed;
-    top: 0;
-}
-
 ul {
     margin-top: 100px;
     margin-left: 500px;
@@ -85,4 +77,8 @@ ul {
 
 #chat{
     margin-bottom: 100px;
+    text-align: left;
+    display: block;
+    margin: 20px 10px;
+    margin-bottom: 60px;
 }
